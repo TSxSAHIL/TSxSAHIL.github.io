@@ -2,337 +2,309 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
-    <link rel="stylesheet" href="styles/styles.css">
+    <title>Sahil Arora - AI & ML Engineer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #111111;
+            --text-color: #EAEAEA;
+            --accent-color: #FFFFFF;
+            --secondary-text-color: #A0A0A0;
+            --card-bg-color: #1A1A1A;
+            --border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Inter', sans-serif;
+            cursor: default;
+        }
+
+        #background-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .font-poppins {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .card {
+            background-color: var(--card-bg-color);
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .section-title {
+            color: var(--accent-color);
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 1px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: var(--border-color);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 40px;
+        }
+
+        .timeline-dot {
+            content: '';
+            position: absolute;
+            left: -5px;
+            top: 4px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--bg-color);
+            border: 2px solid var(--accent-color);
+            z-index: 10;
+        }
+
+        /* Scroll Reveal Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
 </head>
-<body class="main-content">
-    <header class="container header active" id="home">
-        <div class="header-content">
-            <div class="left-header">
-                <div class="h-shape"></div>
-                <div class="image">
-                    <img src="img/img2.jpg" alt="">
-                </div>
-            </div>
-            <div class="right-header">
-                <h1 class="name">
-                    Hi, I'm <span>Sahil Arora.</span><br>
-                    Mobile Application Developer.
+<body class="antialiased">
+
+    <canvas id="background-canvas"></canvas>
+
+    <div class="relative z-10 container mx-auto px-6 md:px-10">
+
+        <!-- Header / Hero Section -->
+        <header class="min-h-screen flex flex-col justify-center text-left py-20">
+            <div class="max-w-4xl">
+                <h1 class="font-poppins font-bold text-5xl md:text-7xl lg:text-8xl tracking-tight reveal">
+                    Sahil Arora
                 </h1>
-                <p>
-                    
-                    Hi! I am Sahil Arora , Flutter Developer and Machine Learning Enthusiast.<br>
+                <h2 id="typing-subtitle" class="font-poppins text-2xl md:text-4xl mt-4 text-transparent bg-clip-text bg-gradient-to-r from-gray-300 to-gray-500 reveal" style="transition-delay: 100ms;">
+                </h2>
+                <p class="mt-8 max-w-2xl text-lg md:text-xl text-secondary-text-color leading-relaxed reveal" style="transition-delay: 200ms;">
+                    AI and Machine Learning Engineer crafting intelligent, high-impact solutions that bridge the gap between data and user experience.
                 </p>
-                <div class="btn-con">
-                    <a href="https://docs.google.com/document/d/11rf8WKeQviKrfS0Mcy4wASJnrfo2GL8y/edit?usp=share_link&ouid=115581670660843870285&rtpof=true&sd=true" target = "blank" class="main-btn">
-                        <span class="btn-text">Download CV</span>
-                        <span class="btn-icon"><i class="fas fa-download"></i></span>
-                    </a>
+                <div class="mt-12 flex gap-4 reveal" style="transition-delay: 300ms;">
+                    <a href="#projects" class="font-medium bg-white text-black py-3 px-6 rounded-lg hover:bg-gray-200 transition-colors">View Projects</a>
+                    <a href="#contact" class="font-medium border border-white/20 text-white py-3 px-6 rounded-lg hover:border-white/50 transition-colors">Contact Me</a>
                 </div>
             </div>
-        </div>
-    </header>
-    <main>
-        <section class="container about" id="about">
-            <div class="main-title">
-                <h2>About <span>me</span><span class="bg-text">my stats</span></h2>
-            </div>
-            <div class="about-container">
-                <div class="left-about">
-                    <h4>Information About me</h4>
-                    <p>
-                        I'm a Flutter Developer , I love to code and create mobile applications.
-                        I am pursuing my Btech from VIT Bhopal University in Computer Science Engineering with Specialization in Artificial Intelligence and Machine Learning.
-                    </p>
-                    <div class="btn-con">
-                        <a href="https://docs.google.com/document/d/11rf8WKeQviKrfS0Mcy4wASJnrfo2GL8y/edit?usp=share_link&ouid=115581670660843870285&rtpof=true&sd=true" target="_blank" class="main-btn">
-                            <span class="btn-text">Download CV</span>
-                            <span class="btn-icon"><i class="fas fa-download"></i></span>
+        </header>
+
+        <main>
+            <!-- About Section -->
+            <section id="about" class="py-24">
+                <div class="grid md:grid-cols-3 gap-10 items-start">
+                    <h2 class="font-poppins text-3xl font-semibold sticky top-20 reveal md:col-span-1">About Me</h2>
+                    <div class="text-secondary-text-color text-lg leading-relaxed space-y-6 md:col-span-2 reveal">
+                        <p>I am a passionate and results-driven Software Engineer with a specialization in Artificial Intelligence and Machine Learning. With a Bachelor of Technology from Vellore Institute of Technology, I have honed my skills in developing innovative solutions that leverage cutting-edge technologies.</p>
+                        <p>My experience at Impelsys involved creating RAG systems for the pharmaceutical industry and building AI-powered tools that significantly improve efficiency and data accuracy. I thrive on solving complex problems and am constantly exploring new ways to apply AI to real-world challenges.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Experience Section -->
+            <section id="experience" class="py-24">
+                 <div class="grid md:grid-cols-3 gap-10 items-start">
+                    <h2 class="font-poppins text-3xl font-semibold sticky top-20 reveal md:col-span-1">Experience</h2>
+                    <div class="relative timeline md:col-span-2 space-y-16">
+                        <div class="timeline-item reveal">
+                            <div class="timeline-dot"></div>
+                            <h3 class="font-poppins text-xl font-semibold text-accent-color">Software Engineer</h3>
+                            <p class="font-medium text-secondary-text-color">Impelsys</p>
+                            <p class="text-sm text-gray-500 mb-4 mt-1">Feb 2024 - Present</p>
+                            <ul class="list-disc list-inside space-y-2 text-secondary-text-color">
+                                <li>Developed a RAG system for the pharmaceutical industry.</li>
+                                <li>Created an AI-powered presentation tool, reducing manual effort by 85%.</li>
+                                <li>Boosted QA with Generative AI for complex pharmaceutical data.</li>
+                            </ul>
+                        </div>
+                        <div class="timeline-item reveal">
+                            <div class="timeline-dot"></div>
+                            <h3 class="font-poppins text-xl font-semibold text-accent-color">Question Bank Sanitization</h3>
+                            <p class="font-medium text-secondary-text-color">Leading Indian Ed-Tech</p>
+                            <p class="text-sm text-gray-500 mb-4 mt-1">Contract Role</p>
+                             <ul class="list-disc list-inside space-y-2 text-secondary-text-color">
+                                <li>Led sanitization of a 1 million-question dataset for IIT/NEET streams.</li>
+                                <li>Achieved 98.67% error correction accuracy with a graph-based approach.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Projects Section -->
+            <section id="projects" class="py-24">
+                <div class="grid md:grid-cols-3 gap-10 items-start">
+                    <h2 class="font-poppins text-3xl font-semibold sticky top-20 reveal md:col-span-1">Projects</h2>
+                    <div class="md:col-span-2 grid grid-cols-1 gap-8">
+                        <a href="https://github.com/TSxSAHIL/Deck-AI" target="_blank" class="block card p-8 rounded-xl reveal">
+                            <h3 class="font-poppins text-2xl font-semibold text-accent-color mb-2">DECK-AI</h3>
+                            <p class="text-secondary-text-color mb-6">An AI-powered automated slide generation system that reduces manual effort by 95% using FastAPI, LangChain, and LLMs.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-white/10 text-white/80 text-xs font-medium px-3 py-1 rounded-full">Python</span>
+                                <span class="bg-white/10 text-white/80 text-xs font-medium px-3 py-1 rounded-full">FastAPI</span>
+                                <span class="bg-white/10 text-white/80 text-xs font-medium px-3 py-1 rounded-full">LangChain</span>
+                            </div>
+                        </a>
+                        <a href="https://github.com/TSxSAHIL/Reel-Transcribe-AI" target="_blank" class="block card p-8 rounded-xl reveal">
+                            <h3 class="font-poppins text-2xl font-semibold text-accent-color mb-2">Reel Transcribe AI</h3>
+                            <p class="text-secondary-text-color mb-6">A full-stack web app for video reel downloads, audio extraction, and automated transcription using the Whisper model.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-white/10 text-white/80 text-xs font-medium px-3 py-1 rounded-full">Python</span>
+                                <span class="bg-white/10 text-white/80 text-xs font-medium px-3 py-1 rounded-full">Flask</span>
+                                <span class="bg-white/10 text-white/80 text-xs font-medium px-3 py-1 rounded-full">Whisper</span>
+                            </div>
                         </a>
                     </div>
                 </div>
-                <div class="right-about">
-                    <div class="about-item">
-                        <div class="abt-text">
-                            <p class="large-text"> 4</p>
-                            <p class="small-text">Projects <br /> Completed</p>
-                        </div>
-                    </div>
-                    <div class="about-item">
-                        <div class="abt-text">
-                            <p class="large-text">1+</p>
-                            <p class="small-text">Years of <br /> experience</p>
-                        </div>
-                    </div>
-                    <div class="about-item">
-                        <div class="abt-text">
-                            <p class="large-text">30+</p>
-                            <p class="small-text">Freelance <br /> Clients</p>
-                        </div>
-                    </div>
-                    <div class="about-item">
-                        <div class="abt-text">
-                            <p class="large-text">400+</p>
-                            <p class="small-text">Customer <br /> reviews</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="about-stats">
-                <h4 class="stat-title">My Skills</h4>
-                <div class="progress-bars">
-                    <div class="progress-bar">
-                        <p class="prog-title">Java </p>
-                        <div class="progress-con">
-                            <p class="prog-text">88%</p>
-                            <div class="progress">
-                                <span class="html"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="progress-bar">
-                        <p class="prog-title">Flutter</p>
-                        <div class="progress-con">
-                            <p class="prog-text">90%</p>
-                            <div class="progress">
-                                <span class="css"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="progress-bar">
-                        <p class="prog-title">Dart</p>
-                        <div class="progress-con">
-                            <p class="prog-text">75%</p>
-                            <div class="progress">
-                                <span class="js"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="progress-bar">
-                        <p class="prog-title">Python</p>
-                        <div class="progress-con">
-                            <p class="prog-text">83%</p>
-                            <div class="progress">
-                                <span class="react"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="progress-bar">
-                        <p class="prog-title">SQL</p>
-                        <div class="progress-con">
-                            <p class="prog-text">60%</p>
-                            <div class="progress">
-                                <span class="node"></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-        </section>
-        <section class="container" id="portfolio">
-            <div class="main-title">
-                <h2>My <span>Portfolio</span><span class="bg-text">My Work</span></h2>
-            </div>
-            <p class="port-text">
-                Here is some of my work that I've done in various programming languages.
-            </p>
-            <div class="portfolios">
-                <div class="portfolio-item">
-                    <div class="image">
-                        <img src="img/port1.jpg" alt="">
-                    </div>
-                    <div class="hover-items">
-                        <h2>BeFit : Let's Get Fit Together</h2>
-                        <div class="icons">
-                            <a href="" class="icon">
-                                <i class="fab fa-github"></i>
-                            </a>
-                            
-                        </div>
-                    </div>
-                </div>
-                <div class="portfolio-item">
-                    <div class="image">
-                        <img src="img/port2.jpg" alt="">
-                    </div>
-                    <div class="hover-items">
-                        <h2>Calculator Application</h2>
-                        <div class="icons">
-                            <a href="#" class="icon">
-                                <i class="fab fa-github"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="portfolio-item">
-                    <div class="image">
-                        <img src="img/port3.jpg" alt="">
-                    </div>
-                    <div class="hover-items">
-                        <h2>Cyber Bullying Detection</h2>
-                        <div class="icons">
-                            <a href="#" class="icon">
-                                <i class="fab fa-github"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="portfolio-item">
-                    <div class="image">
-                        <img src="img/port4.jpg" alt="">
-                    </div>
-                    <div class="hover-items">
-                        <h2>Adware Malware Detection</h2>
-                        <div class="icons">
-                            <a href="#" class="icon">
-                                <i class="fab fa-github"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="portfolio-item">
-                    <div class="image">
-                        <img src="img/port5.jpg" alt="">
-                    </div>
-                    <div class="hover-items">
-                        <h2>Covid 19 Tracker Application</h2>
-                        <div class="icons">
-                            <a href="#" class="icon">
-                                <i class="fab fa-github"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <section class="container contact" id="contact">
-            <div class="contact-container">
-                <div class="main-title">
-                    <h2>Contact <span>Me</span><span class="bg-text">Contact</span></h2>
-                </div>
-                <div class="contact-content-con">
-                    <div class="left-contact">
-                        <h4>Contact me here</h4>
-                        <p>
-                            
-                        </p>
-                        <div class="contact-info">
-                            <div class="contact-item">
-                                <div class="icon">
-                                    <i class="fas fa-map-marker-alt"></i>
-                                    <span>Location</span>
-                                </div>
-                                <p>
-                                    : Jaipur , India
-                                </p>
-                            </div>
-                            <div class="contact-item">
-                                <div class="icon">
-                                    <i class="fas fa-envelope"></i>
-                                    <span>Email</span>
-                                </div>
-                                <p>
-                                    <span>: tssahil2001@gmail.com</span>
-                                </p>
-                            </div>
-                            <div class="contact-item">
-                                <div class="icon">
-                                    <i class="fas fa-user-graduate"></i>
-                                    <span>Education</span>
-                                </div>
-                                <p>
-                                    <span>:VIT Bhopal University</span>
-                                </p>
-                            </div>
-                            <div class="contact-item">
-                                <div class="icon">
-                                    <i class="fas fa-user-graduate"></i>
-                                    <span>Mobile Number</span>
-                                </div>
-                                <p>
-                                    <span>: +91 7297982448</span>
-                                </p>
-                            </div>
-                            <div class="contact-item">
-                                <div class="icon">
-                                    <i class="fas fa-globe-africa"></i>
-                                    <span>Languages</span>
-                                </div>
-                                <p>
-                                    <span>: English, Hindi</span>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="contact-icons">
-                            <div class="contact-icon">
-                                <a href="https://www.linkedin.com/in/sahil-arora-472415209/" target="_blank">
-                                    <i class="fab fa-linkedin"></i>
-                                </a>
-                                <a href="https://twitter.com/Tssahil2001" target="_blank">
-                                    <i class="fab fa-twitter"></i>
-                                </a>
-                                <a href="https://github.com/TSxSAHIL" target="_blank">
-                                    <i class="fab fa-github"></i>
-                                </a>
-                                <a href="https://www.instagram.com/being.sahil23/" target="_blank">
-                                    <i class="fab fa-instagram"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="right-contact">
-                        <form action="" class="contact-form">
-                            <div class="input-control i-c-2">
-                                <input type="text" required placeholder="YOUR NAME">
-                                <input type="email" required placeholder="YOUR EMAIL">
-                            </div>
-                            <div class="input-control">
-                                <input type="text" required placeholder="ENTER SUBJECT">
-                            </div>
-                            <div class="input-control">
-                                <textarea name="" id="" cols="15" rows="8" placeholder="Message Here..."></textarea>
-                            </div>
-                            <div class="submit-btn">
-                                <a href="#" class="main-btn">
-                                    <span class="btn-text">Download CV</span>
-                                    <span class="btn-icon"><i class="fas fa-download"></i></span>
-                                </a>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
+            </section>
 
-    <div class="controls">
-        <div class="control active-btn" data-id="home" >
-            <i class="fas fa-home"></i>
-        </div>
-        <div class="control" data-id="about">
-            <i class="fas fa-user"></i>
-        </div>
-        <div class="control" data-id="portfolio">
-            <i class="fas fa-briefcase"></i>
-        </div>
-        <div class="control" data-id="blogs">
-            <i class="far fa-newspaper"></i>
-        </div>
-        <div class="control" data-id="contact">
-            <i class="fas fa-envelope-open"></i>
-        </div>
+            <!-- Contact Section -->
+            <section id="contact" class="py-24 text-center">
+                <div class="reveal">
+                    <h2 class="font-poppins text-4xl md:text-5xl font-semibold">Have a project in mind?</h2>
+                    <p class="mt-4 max-w-2xl mx-auto text-lg text-secondary-text-color">I'm always open to discussing new projects and opportunities. Let's build something amazing together.</p>
+                    <a href="https://wa.me/918302925294" target="_blank" rel="noopener noreferrer" class="mt-8 inline-block font-medium bg-white text-black py-3 px-8 rounded-lg hover:bg-gray-200 transition-colors">
+                        Get In Touch
+                    </a>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="text-center py-10 mt-16 border-t border-white/10">
+            <div class="flex justify-center space-x-6">
+                <a href="https://github.com/TSxSAHIL" target="_blank" class="text-secondary-text-color hover:text-accent-color transition-colors">GitHub</a>
+                <a href="https://www.linkedin.com/in/sahil-arora-a4727221b" target="_blank" class="text-secondary-text-color hover:text-accent-color transition-colors">LinkedIn</a>
+            </div>
+            <p class="text-sm text-gray-600 mt-6">© 2024 Sahil Arora. All rights reserved.</p>
+        </footer>
+
     </div>
-    <div class="theme-btn">
-        <i class="fas fa-adjust"></i>
-    </div>
-    <script src="app.js"></script>
+
+    <script>
+        // --- Animated Canvas Background (Digital Rain) ---
+        const canvas = document.getElementById('background-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let width, height, columns, yPositions;
+        const fontSize = 16;
+        const characters = '01'; // Using binary for a clean, techy look
+
+        function setup() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            columns = Math.floor(width / fontSize);
+            yPositions = Array(columns).fill(0).map((_, i) => Math.random() * height);
+        }
+
+        function draw() {
+            // Create a semi-transparent black rectangle to create the fading trail effect
+            ctx.fillStyle = 'rgba(17, 17, 17, 0.05)';
+            ctx.fillRect(0, 0, width, height);
+
+            // Set the color and font for the falling characters
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.2)'; // Subtle white/gray
+            ctx.font = `${fontSize}px monospace`;
+
+            // Loop through each column
+            yPositions.forEach((y, i) => {
+                // Pick a random character from the string
+                const char = characters.charAt(Math.floor(Math.random() * characters.length));
+                const x = i * fontSize;
+                
+                // Draw the character
+                ctx.fillText(char, x, y);
+
+                // If the character's y position is greater than the height, reset it to the top
+                // Add a random chance to reset to make the rain effect more varied
+                if (y > height + 100 && Math.random() > 0.975) {
+                    yPositions[i] = 0;
+                } else {
+                    // Otherwise, move it down
+                    yPositions[i] = y + fontSize;
+                }
+            });
+        }
+
+        function animate() {
+            draw();
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', setup);
+        setup();
+        // Start the animation with a slight delay to ensure everything is loaded
+        setTimeout(animate, 100);
+
+
+        // --- Typing animation for subtitle ---
+        const subtitle = "AI & Machine Learning Engineer";
+        const subtitleElement = document.getElementById('typing-subtitle');
+        let i = 0;
+        function typeWriter() {
+            if (i < subtitle.length) {
+                subtitleElement.innerHTML += subtitle.charAt(i);
+                i++;
+                setTimeout(typeWriter, 80);
+            }
+        }
+        
+        // --- Scroll Reveal Animation ---
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealOnScroll = () => {
+            const windowHeight = window.innerHeight;
+            revealElements.forEach((el, index) => {
+                const elementTop = el.getBoundingClientRect().top;
+                if (elementTop < windowHeight - 100) { // 100px buffer
+                    el.classList.add('visible');
+                    el.style.transitionDelay = `${index * 50}ms`;
+                }
+            });
+        }
+
+        window.addEventListener('scroll', revealOnScroll);
+        
+        // --- Initial check on load ---
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                typeWriter();
+                revealOnScroll();
+            }, 100);
+        });
+    </script>
 </body>
 </html>
