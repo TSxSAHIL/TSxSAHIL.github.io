@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "skills": {
+    "scroll-world": {
+      "source": "oso95/scroll-world",
+      "sourceType": "github",
+      "skillPath": "skills/scroll-world/SKILL.md",
+      "computedHash": "3a6c7f6facad287583323ee2dbffd8a14f5ced7041aa002a5eaa09c1c4c0560c"
+    }
+  }
+}
