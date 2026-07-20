@@ -1,2 +1,7 @@
 # PHPStorm
 .idea
+
+# Local tooling and dependencies
+node_modules/
+.mcp.json
+.claude/
