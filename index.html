@@ -228,6 +228,18 @@ section{padding:var(--space-7) 0;position:relative}
 .p-stat .v{font-family:var(--mono);font-size:20px;font-weight:600;display:block;letter-spacing:-.02em;font-variant-numeric:tabular-nums;background:linear-gradient(120deg,#C084FC,#E879F9);-webkit-background-clip:text;background-clip:text;color:transparent}
 .p-stat .k{font-size:11.5px;color:var(--muted);margin-top:3px;display:block;line-height:1.4}
 
+/* ============ SHOWREEL VIDEO BAND ============ */
+.showreel{position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw;width:100vw;padding:0;overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.showreel-inner{position:relative;height:clamp(360px,64vh,680px);overflow:hidden;background:#030014 url('assets/agentflow-poster.jpg') center/cover no-repeat}
+.showreel video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.12);transition:transform .1s linear;will-change:transform}
+.showreel::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 62% 52% at 50% 50%,rgba(3,0,20,.74),rgba(3,0,20,.32) 55%,transparent 80%),linear-gradient(180deg,var(--bg) 0%,transparent 20%,transparent 60%,rgba(3,0,20,.92) 100%),radial-gradient(ellipse 75% 95% at 50% 50%,transparent 42%,rgba(3,0,20,.55) 100%);z-index:2}
+.showreel-caption{position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 var(--space-3);gap:var(--space-2)}
+.showreel-caption .kicker{justify-content:center}
+.showreel-caption h2{font-size:clamp(30px,5vw,56px);font-weight:800;letter-spacing:-.03em;line-height:1.05;text-shadow:0 4px 40px rgba(3,0,20,.9);max-width:16ch}
+.showreel-caption p{color:var(--text-2);max-width:44ch;font-size:16px;text-shadow:0 2px 20px rgba(3,0,20,.9)}
+.reel-badge{display:inline-flex;align-items:center;gap:9px;font-family:var(--mono);font-size:12px;color:var(--text-2);background:rgba(6,1,16,.6);border:1px solid var(--border-strong);padding:7px 15px;border-radius:999px;backdrop-filter:blur(6px)}
+.reel-badge .rec{width:9px;height:9px;border-radius:50%;background:#F472B6;box-shadow:0 0 10px #F472B6;animation:pulse 2.2s var(--ease) infinite}
+
 /* ============ TIMELINE ============ */
 .timeline{position:relative;margin-top:var(--space-5);padding-left:36px}
 .timeline::before{content:"";position:absolute;left:8px;top:6px;bottom:6px;width:1.5px;background:rgba(168,85,247,.16)}
@@ -460,6 +472,21 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
         </div>
       </article>
 
+    </div>
+  </div>
+</section>
+
+<!-- ============ SHOWREEL VIDEO BAND ============ -->
+<section class="showreel" aria-label="Agent-loop motion reel">
+  <div class="showreel-inner">
+    <video id="reel" muted loop playsinline preload="none" poster="assets/agentflow-poster.jpg" aria-hidden="true">
+      <source src="assets/agentflow.webm" type="video/webm">
+      <source src="assets/agentflow.mp4" type="video/mp4">
+    </video>
+    <div class="showreel-caption">
+      <span class="reel-badge reveal"><span class="rec" aria-hidden="true"></span>agent-loop · live render</span>
+      <h2 class="reveal reveal-d1">Every request is a loop,<br>running until it converges.</h2>
+      <p class="reveal reveal-d2">Observe, plan, act, verify — visualized as the neural mesh that powers the systems I ship.</p>
     </div>
   </div>
 </section>
@@ -1075,6 +1102,39 @@ function playLoop(i=0){
   }
 }
 if(reduced){renderAllTerm()}else{playLoop()}
+
+/* ---------- SHOWREEL: play in view, poster-only when reduced, scroll-scrub scale ---------- */
+(function(){
+  const reel=document.getElementById('reel');
+  if(!reel)return;
+  const band=reel.closest('.showreel');
+  let loaded=false,inView=false;
+  const vis=new IntersectionObserver(([e])=>{
+    inView=e.isIntersecting;
+    if(reduced)return;
+    if(inView){
+      if(!loaded){reel.load();loaded=true}
+      reel.play().catch(()=>{});
+    }else{reel.pause()}
+  },{rootMargin:'150px 0px'});
+  vis.observe(reel);
+  document.addEventListener('visibilitychange',()=>{
+    if(reduced)return;
+    if(document.hidden)reel.pause();
+    else if(inView)reel.play().catch(()=>{});
+  });
+  if(!reduced){
+    let tick=false;
+    function scrub(){
+      const r=band.getBoundingClientRect();
+      const p=Math.min(Math.max((innerHeight-r.top)/(innerHeight+r.height),0),1);
+      reel.style.transform=`scale(${(1.12-p*0.14).toFixed(3)})`;
+      tick=false;
+    }
+    addEventListener('scroll',()=>{if(!tick){tick=true;requestAnimationFrame(scrub)}},{passive:true});
+    scrub();
+  }
+})();
 
 /* ---------- footer year ---------- */
 document.getElementById('yr').textContent=new Date().getFullYear();
